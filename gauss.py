@@ -3,9 +3,17 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
+
 def gauss(A: np.array, b: np.array) -> np.array:
     """
+    Solve a linear system of equations Ax = b using Gaussian elimination.
     written by ChatGPT
+
+    :param A: the coefficient matrix of the linear system.
+    :param b: the right-hand side of the linear system.
+
+    :returns: ndarray of shape (n,)
+        The solution to the linear system.
     """
     n = A.shape[0]
 
@@ -16,16 +24,16 @@ def gauss(A: np.array, b: np.array) -> np.array:
         # swap rows
         A[[i, max_row], :] = A[[max_row, i], :]
         b[[i, max_row]] = b[[max_row, i]]
-        
+
         # elimination step
-        for j in range(i+1, n):
-            factor = A[j,i] / A[i,i]
+        for j in range(i + 1, n):
+            factor = A[j, i] / A[i, i]
             b[j] -= factor * b[i]
-            A[j,i:] -= factor * A[i,i:]
-    
+            A[j, i:] -= factor * A[i, i:]
+
     # back substitution
     x = np.zeros(n)
-    for i in range(n-1, -1, -1):
-        x[i] = (b[i] - np.dot(A[i,i+1:], x[i+1:])) / A[i,i]
-    
+    for i in range(n - 1, -1, -1):
+        x[i] = (b[i] - np.dot(A[i, i + 1 :], x[i + 1 :])) / A[i, i]
+
     return x
