@@ -15,15 +15,10 @@ jobs:
         with:
           python-version: "3.10"
           cache: "pipenv"
-      
+
       - name: Install pipenv
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
 
       - run: pipenv sync --dev
 
-      - name: Run tests
-        uses: dariocurr/pytest-summary@main
-        with:
-          paths: .
-          options: --quiet 
-          show: all
+      - run: pipenv run pytest
