@@ -1,19 +1,17 @@
 import numpy as np
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
 
 
-def gauss(A: np.array, b: np.array) -> np.array:
+def gauss(A: np.ndarray, b: np.ndarray) -> np.ndarray:
     """
     Solve a linear system of equations Ax = b using Gaussian elimination.
-    written by ChatGPT
 
     :param A: the coefficient matrix of the linear system.
+    :type A: np.ndarray
     :param b: the right-hand side of the linear system.
+    :type b: np.ndarray
 
-    :returns: ndarray of shape (n,)
-        The solution to the linear system.
+    :return: The solution to the linear system.
+    :rtype: numpy.ndarray
     """
     n = A.shape[0]
 
